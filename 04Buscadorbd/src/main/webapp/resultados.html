@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<center>
+<form>
+<select>
+<option th:each="alumno:${listado}">Selecciona un opcion</option>
+
+</select>
+
+<div th:each="alumno:${listado}">
+		<h2><a th:href="${alumno.nombres}"></a></h2>
+		
+	</div>
+	<br>
+
+
+
+
+<<div th:each="alumno:${listado}">
+		<h2><a th:href="${alumno.nombre}" th:text="${alumno.email}"></a></h2>
+		<h3 th:text="${alumno.nota}"></h3>
+		<hr>
+	</div>
+	<br>
+
+</form>
+
+<a href= "menu">Volver </a>
+	</center>
+	
+	<center>
+	
+	<a href= "inicio">Volver </a>
+	</center>
+</body>
+</html>
