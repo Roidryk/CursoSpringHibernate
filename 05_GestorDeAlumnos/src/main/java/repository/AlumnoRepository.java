@@ -11,6 +11,6 @@ public interface AlumnoRepository {
 	void añadir (Alumnos alumno);
 	Alumnos findByNombreAndCurso(String nombre, String cruso);
 	List<String> findAllCursos();
-	
+	void removeById(int idAlumno);
 	
 }
