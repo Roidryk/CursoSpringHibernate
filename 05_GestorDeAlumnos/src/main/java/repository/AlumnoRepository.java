@@ -13,4 +13,6 @@ public interface AlumnoRepository {
 	List<String> findAllCursos();
 	void removeById(int idAlumno);
 	
+	double averageByCurso(String curso);
+	
 }
