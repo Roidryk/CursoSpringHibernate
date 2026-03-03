@@ -61,5 +61,14 @@ public class AlumnosController {
 		return "menu";
 
 	}
+	
+	@GetMapping("eliminar")
+	public String eliminar(Model model, @RequestParam("id") int id) {
+		
+		alumnoService.elminar(id);
+		return "menu";
+		
+	}
+	
 
 }

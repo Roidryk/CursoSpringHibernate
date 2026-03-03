@@ -63,13 +63,28 @@ public class AlumnosRepositoryImp implements AlumnoRepository {
 
 		
 	}
-
-	@Override
+ 
+	//T	
+	
+	@Transactional
 	public void removeById(int idAlumno) {
 		String jpql = "delete from Alumno a where a.idAlumno = ?1";
 		Query query = eManager.createQuery(jpql);
 		query.setParameter(1, idAlumno);
 		query.executeUpdate();
+		
+	}
+
+	@Override
+	public double averageByCurso(String curso) {
+
+		String sql = "select avg(nota) from alumnos where curso = ?";
+		Query query = eManager.createNativeQuery(sql, Double.class);
+		query.setParameter(1, "curso");
+		
+		return (double) query.getSingleResult();
+		
+		
 		
 	}
 

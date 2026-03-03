@@ -9,5 +9,5 @@ public interface AlumnoService {
 	List<Alumnos> buscarPorCurso(String curso);
 	boolean nuevoAlumno(Alumnos alumno);
 	List<String>cursos();
-	
+	void elminar(int id);
 }

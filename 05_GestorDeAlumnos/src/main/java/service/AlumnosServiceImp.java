@@ -39,4 +39,10 @@ public class AlumnosServiceImp implements AlumnoService{
 		return alumnoRepository.findAllCursos();
 	}
 
+	@Override
+	public void elminar(int id) {
+		alumnoRepository.removeById(id);
+		
+	}
+
 }
