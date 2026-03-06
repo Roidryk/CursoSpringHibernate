@@ -19,4 +19,11 @@ public class Libro {
 	private int paginas;
 	private double precio;
 	private int idTema;
+	public Libro(int idTema) {
+		super();
+		this.idTema = idTema;
+	}
+	
+	
+	
 }

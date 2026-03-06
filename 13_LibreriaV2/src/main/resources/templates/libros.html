@@ -38,6 +38,8 @@ h2 th:text="${session.usuario}"></h2>
 				<td th:text="${a.titulo}"></td>
 				<td th:text="${a.autor}"></td>
 				<td th:text="${a.precio}"></td>
+				<td th:text="${a.temaRelacionado.temas}"></td>
+				 
 				<td><a th:href="@{eliminar(posicion=${a.posicion})}">Eliminar</a>
 			</tr>
 		</table>
