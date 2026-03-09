@@ -52,5 +52,13 @@ public class ClienteServiceImp implements ClienteService{
 	}
 
 
+
+	@Override
+	public boolean guardar(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 	
 }
