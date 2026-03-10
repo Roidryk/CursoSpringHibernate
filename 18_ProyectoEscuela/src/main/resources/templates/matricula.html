@@ -6,14 +6,33 @@
 </head>
 <body>
 
+
+
 <center>
 
 <form action="matricula" method="get">
 
-<select name="curso">
 
+Selecciona el curso:
+<select name="codCurso">
+<option value="0" th:selected="${cursos==0}"  >Todos</option>
+<option th:each="c:${cursos}"  th:selected="{codCurso==c.codCurso} th:text="${c.denominacion}" th:value="${c.codCurso}" ></option>)
 
 </select>
+
+<input type="submit" value="Buscar">
+
+
+<table border="1" th:if="${matricula}">
+			<tr><th>Título</th><th>Autor</th><th>Precio</th><th>Tema</th><th></th></tr>
+			<tr th:each="a:${matricula}">
+				<td th:text="${m.alumno.nombre}"></td>
+				<td th:text="${m.alumno.edad}"></td>
+				<td th:text="${m.curso.denominacion}"></td>
+				<td th:text="${m.curso.horario}"></td>
+			</tr>
+		</table>
+
 
 </form>
 

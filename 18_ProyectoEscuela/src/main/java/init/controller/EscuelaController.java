@@ -34,7 +34,7 @@ public class EscuelaController {
 	public String verMatriculas(Model model, @RequestParam int codCurso) {
 		
 		model.addAttribute("matricula", escuelaService.obtenerMatriculas(codCurso));
-		model.addAttribute("curso", escuelaService.cursos());
+		model.addAttribute("cursos", escuelaService.cursos());
 		return "matricula";
 		
 	}
