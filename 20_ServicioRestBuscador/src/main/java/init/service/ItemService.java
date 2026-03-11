@@ -7,7 +7,7 @@ import init.model.Item;
 
 public interface ItemService {
 	
-	List<Item> buscarPorTematica(String tematica);
+	List<ItemDTO> buscarPorTematica(String tematica);
 	boolean nuevoItem(Item item);
 	boolean guardar(ItemDTO item);
 	ItemDTO eliminarItem(String url);

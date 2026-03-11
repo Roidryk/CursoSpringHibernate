@@ -3,7 +3,9 @@ package init.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,40 +14,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import init.dtos.ItemDTO;
-import init.repository.ItemsRepository;
-import init.service.ItemService;
+import init.dtos.ItemDto;
+import init.service.ItemsService;
 
 @RestController
-public class ItemController {
-	
+public class ItemsController {
 	@Autowired
-	ItemsRepository itemRepository;
-	
-	@Autowired
-	ItemService itemService;
-
-	@Autowired
-	ItemService itemsService;
+	ItemsService itemsService;
 	@GetMapping(value="items/{tematica}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<ItemDTO> buscarPorTematica(@PathVariable String tematica){
-		return itemService.buscarPorTematica(tematica);
+	public ResponseEntity<List<ItemDto>> buscarPorTematica(@PathVariable String tematica){
+		return new ResponseEntity<>(itemsService.buscarPorTematica(tematica),HttpStatus.OK);
 	}
 	@PostMapping(value="items",consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseEntity<Void> alta (@RequestBody ItemDTO item) {
-		
-		if (itemService.nuevoItem(item)) {
-			
+	public ResponseEntity<Void> alta(@RequestBody ItemDto item) {
+		if(itemsService.nuevoItem(item)) {
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		}
-		
-		
+		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 	@DeleteMapping(value="items",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ItemDTO eliminarPorUrl(@RequestParam String url) {
-		return itemsService.eliminarItem(url);
+	public ResponseEntity<ItemDto> eliminarPorUrl(@RequestParam String url) {
+		return ResponseEntity.ok(itemsService.eliminarItem(url));
 	}
-
-		
-	
-
 }

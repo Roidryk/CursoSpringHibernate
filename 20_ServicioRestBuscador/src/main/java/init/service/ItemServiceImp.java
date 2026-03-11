@@ -21,7 +21,7 @@ public class ItemServiceImp implements ItemService{
 	
 	@Override
 	public List<ItemDTO> buscarPorTematica(String tematica) {
-		return itemsRepository.findByTematica(tematica).stream().map(i->Mapeador.itemDtoToEntity(i)).toList();
+		return itemsRepository.findByTematica(tematica).stream().map(i->Mapeador.itemEntityToDto(i)).toList();
 	}
 	@Override
 	public boolean nuevoItem(Item item) {
@@ -36,7 +36,7 @@ public class ItemServiceImp implements ItemService{
 		
 		if(itemsRepository.findFirstByUrl(item.getUrl())==null) {
 			
-			itemsRepository.save(item);
+			itemsRepository.save(m);
 			return true;
 		}
 		
