@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 
 import init.dtos.EstudianteDTO;
@@ -18,8 +22,8 @@ public class EstudiantesServiceImp implements EstudiantesService {
 	@Autowired
 	Mapeador mapeador;
 	
-	
-	private String urlBase="http//localhost:8005/escuela/";
+	@Value("${remote.url}")
+	private String urlBase;
 
 	@Override
 	public List<EstudianteDTO> estudiantesRangoNota(double min, double max) {
@@ -29,8 +33,26 @@ public class EstudiantesServiceImp implements EstudiantesService {
 
 	@Override
 	public boolean altaEstudiante(EstudianteDTO estudiante) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			restClient.post()
+		.uri(urlBase+"alumnos")
+		.contentType(MediaType.APPLICATION_JSON)
+		.body(mapeador.estudianteToAlumno(estudiante)) //Mapear el estudiante antes de enviarlo
+		.retrieve()
+		.toBodilessEntity();
+		
+		return true;
+		} catch (HttpClientErrorException ex) {
+		
+			if(ex.getStatusCode()==HttpStatus.CONFLICT)
+			
+				return false;
+			throw ex;	
+		}
+		
+		
+			
+	
 	}
 
 }
