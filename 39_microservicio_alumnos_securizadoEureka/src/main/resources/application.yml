@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: servicio-alumnos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alumnoscursos
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+server:
+  port: 8007
+  servlet:
+    context-path: /escuela
+db:
+  security:
+    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springsecurity
+    user: root
+    password: root
+eureka:
+  client:
+    serviceUrl:
+     defaultZone: http://localhost:8761/eureka
+      
