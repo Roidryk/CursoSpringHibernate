@@ -1,0 +1,18 @@
+package init.dtos;
+
+import java.time.LocalDateTime;
+
+import init.model.Pedido;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class PedidosDto {
+	private int idPedido;
+	private int codigoProducto;
+	private int unidades;
+	private LocalDateTime fechaPedido;
+}
