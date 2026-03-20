@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alumnos-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alumnos
+  template:
+    metadata:
+      labels:
+        app: alumnos
+    spec:
+      containers:
+        - name: alumnos-container
+          image: imgalumnos  # Usa la imagen Docker local
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8500  # Puerto dentro del contenedor
+          env:
+             - name: SPRING_PROFILES_ACTIVE
+               value: "prod"
+             - name: HOST_DB
+               value: "10.2.1.60"
+             - name: PORT_DB
+               value: "3306"
+             - name: USER_DB
+               value: "root"
+             - name: PASS_DB
+               value: "root"
+               
+               
+apiVersion: v1
+kind: Service	
+metadata:
+  name: alumnos-service
+spec:
+  selector:
+    app: alumnos  #nombre de los pods a gestionar
+  type: LoadBalancer  # Hace accesible el servicio desde fuera del clúster
+  ports:
+    - protocol: TCP
+      port: 8000      # Puerto del servicio en Kubernetes
+      targetPort: 8500 # Puerto del contenedor
+      nodePort: 30001   # Puerto en la máquina física (Minikube/Kubernetes lo expone aquí)
+               
+               
