@@ -1,0 +1,3 @@
+spring.datasource.url=jdbc:mysql://${HOST_DB}:$:${PORT_DB}/alumnoscursos
+spring.datasource.username=root
+spring.datasource.password=root

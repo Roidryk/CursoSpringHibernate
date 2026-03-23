@@ -1,0 +1,111 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "imgpaises:latest"
+        CONTAINER_NAME = "paises"
+        URL_PROJECT = "C:/CursoSpringHibernate2026Tarde/ProyectosEclipse/51_MicroServicioDockerConJenkins"
+    }
+
+    stages {
+        stage('Build JAR') {
+            steps {
+                dir("$URL_PROJECT"){
+                    bat 'mvn clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Stop & Remove Container') {
+            steps {
+                bat "@docker rm -f %CONTAINER_NAME% 2>nul"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("$URL_PROJECT") {
+                    script {
+                        bat "@docker rmi %DOCKER_IMAGE% 2>nul || exit 0"
+                        bat "@docker build -t %DOCKER_IMAGE% ."
+                    }
+                }
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                bat "@docker run -d --name %CONTAINER_NAME% -p 9000:8500 %DOCKER_IMAGE%"
+            }
+        }
+    }
+}
+
+
+Despliegue alumnos
+
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "imgalumnos:latest"
+        CONTAINER_NAME = "alumnos"
+		URL_PROJECT = "C:/curso_tardes_spring_hibernate/proyectos/52_microservicio_alumnos_securizado_JWT_kubernetes_jenkins"
+		APP_NAME="alumnos"
+    }
+
+    stages {
+        stage('Build JAR') {
+            steps {
+                dir("${URL_PROJECT}") {
+                    bat 'mvn clean package -DskipTests'
+                }
+            }
+        }
+		stage('Stop & Remove Container') {
+			steps {
+				bat "@docker rm -f %CONTAINER_NAME% 2>nul"
+			}
+		}
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${URL_PROJECT}") {
+                    script {
+						echo "Eliminando imagen anterior si existe..."
+						bat "@docker rmi %DOCKER_IMAGE% 2>nul || exit 0"
+
+						echo "Construyendo nueva imagen..."
+						bat "@docker build -t %DOCKER_IMAGE% ."
+					}
+                }
+            }
+        }
+
+        stage('Imagen visible en kubernates') {
+			steps {
+				bat "@minikube image load %DOCKER_IMAGE%"
+			}
+		}
+		stage('Eliminar componentes kubernetes') {
+			steps {
+				bat "@kubectl delete pod,deploy,svc -l app=%APP_NAME%"
+			}
+		}
+		
+		stage('Despliegue kubernetes') {
+            steps {
+                dir("${URL_PROJECT}") {
+                    script {
+						echo "Realizando deployment..."
+						bat "@kubectl apply -f deployment.yaml"
+
+						echo "Creando servicio..."
+						bat "@kubectl apply -f service.yaml"
+					}
+                }
+            }
+        }
+
+    }
+}

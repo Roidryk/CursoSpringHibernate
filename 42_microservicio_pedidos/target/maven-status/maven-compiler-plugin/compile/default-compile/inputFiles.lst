@@ -1,0 +1,9 @@
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\Application.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\config\SecurityConfig.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\controller\ProductosController.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\dtos\PedidosDto.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\mappers\Mapeador.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\model\Pedido.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\repository\PedidosDao.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\service\implementations\PedidoServiceImpl.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\42_microservicio_pedidos\src\main\java\init\service\interfaces\PedidoService.java

@@ -36,7 +36,7 @@ kind: Service
 metadata:
   name: alumnos-service
 spec:
-  selector:
+  selector:s
     app: alumnos  #nombre de los pods a gestionar
   type: LoadBalancer  # Hace accesible el servicio desde fuera del clúster
   ports:

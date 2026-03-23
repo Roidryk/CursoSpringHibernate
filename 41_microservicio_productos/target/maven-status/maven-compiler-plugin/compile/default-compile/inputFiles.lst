@@ -1,0 +1,9 @@
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\Application.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\config\SecurityConfig.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\controller\ProductosController.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\dtos\ProductoDto.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\mappers\Mapeador.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\model\Producto.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\repository\ProductosDao.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\service\implementations\ProductosServiceImpl.java
+C:\CursoSpringHibernate2026Tarde\ProyectosEclipse\41_microservicio_productos\src\main\java\init\service\interfaces\ProductosService.java
